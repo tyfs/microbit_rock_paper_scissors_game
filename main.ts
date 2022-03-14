@@ -1,41 +1,41 @@
 input.onButtonPressed(Button.A, function () {
-    radio.sendString("" + (el))
+    radio.sendString("" + (my_hand))
 })
 radio.onReceivedString(function (receivedString) {
-    rakip_el = receivedString
-    if (el == "tas") {
-        if (rakip_el == "kagit") {
+    opponent_hand = receivedString
+    if (my_hand == "rock") {
+        if (opponent_hand == "paper") {
             basic.showIcon(IconNames.Sad)
-        } else if (rakip_el == "makas") {
+        } else if (opponent_hand == "scissors") {
             basic.showIcon(IconNames.Happy)
-        } else {
+        } else if (opponent_hand == "rock") {
             basic.showIcon(IconNames.Heart)
         }
-    } else if (el == "kagit") {
-        if (rakip_el == "tas") {
+    } else if (my_hand == "paper") {
+        if (opponent_hand == "rock") {
             basic.showIcon(IconNames.Happy)
-        } else if (rakip_el == "makas") {
+        } else if (opponent_hand == "scissors") {
             basic.showIcon(IconNames.Sad)
-        } else {
+        } else if (opponent_hand == "paper") {
             basic.showIcon(IconNames.Heart)
         }
     } else {
-        if (rakip_el == "tas") {
+        if (opponent_hand == "rock") {
             basic.showIcon(IconNames.Sad)
-        } else if (rakip_el == "kagit") {
+        } else if (opponent_hand == "paper") {
             basic.showIcon(IconNames.Happy)
-        } else {
+        } else if (opponent_hand == "scissors") {
             basic.showIcon(IconNames.Heart)
         }
     }
 })
 input.onGesture(Gesture.Shake, function () {
     basic.clearScreen()
-    salla += 1
-    if (salla == 2) {
-        salla = 0
-        el = eller._pickRandom()
-        if (el == "tas") {
+    shake_count += 1
+    if (shake_count == 3) {
+        shake_count = 0
+        my_hand = hands._pickRandom()
+        if (my_hand == "rock") {
             basic.showLeds(`
                 . . . . .
                 . # # # .
@@ -43,7 +43,7 @@ input.onGesture(Gesture.Shake, function () {
                 . # # # .
                 . . . . .
                 `)
-        } else if (el == "kagit") {
+        } else if (my_hand == "paper") {
             basic.showLeds(`
                 # # # # #
                 # . . . #
@@ -51,7 +51,7 @@ input.onGesture(Gesture.Shake, function () {
                 # . . . #
                 # # # # #
                 `)
-        } else {
+        } else if (my_hand == "scissors") {
             basic.showLeds(`
                 # # . . #
                 # # . # .
@@ -62,13 +62,13 @@ input.onGesture(Gesture.Shake, function () {
         }
     }
 })
-let eller: string[] = []
-let rakip_el = ""
-let el = ""
-let salla = 0
+let hands: string[] = []
+let opponent_hand = ""
+let my_hand = ""
+let shake_count = 0
 basic.clearScreen()
-salla = 0
+shake_count = 0
 radio.setGroup(1)
-el = "yok"
-rakip_el = "yok"
-eller = ["tas", "kagit", "makas"]
+my_hand = "yok"
+opponent_hand = "yok"
+hands = ["rock", "paper", "scissors"]
