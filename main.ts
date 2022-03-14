@@ -69,6 +69,6 @@ let shake_count = 0
 basic.clearScreen()
 shake_count = 0
 radio.setGroup(1)
-my_hand = "yok"
-opponent_hand = "yok"
+my_hand = ""
+opponent_hand = ""
 hands = ["rock", "paper", "scissors"]
